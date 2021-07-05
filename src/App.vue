@@ -6,7 +6,7 @@
     <employee-table 
       :employees="employees" 
       @delete:employee="deleteEmployee"
-      @edit:employee="editEmployee , asynchronousMethod"      
+      @edit:employee="editEmployee"      
     />
   </div>
 </template>
