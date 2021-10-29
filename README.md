@@ -1,5 +1,5 @@
-# vue-second
-
+# complete-vue-project
+it is a project with two branches which use both API and manual data . 
 ## Project setup
 ```
 npm install
