@@ -30,21 +30,33 @@
       }
     },
     methods:{
-      
+      doFocus(){
+        this.$refs.first.focus()
+      },
       handleSubmit(){
-      
-      if(this.invalidName||this.invalidEmail){
-        this.error = true;
-        this.massage='you have to fill the inputs';
-      }
-      else{
-      this.$emit('add:employee' , this.employee)
-      this.$refs.first.focus()
-      this.error = false;
-        this.massage='done!'
-      }
+        if(this.invalidName){
+
+          this.error = true;
+          this.massage='invalid name';
+        
+        }
+        else if(this.invalidEmail){
+          this.error = true;
+          this.massage = 'invalid email'
+        }
+        else{
+
+          this.$emit('add:employee' , this.employee)
+          this.doFocus()
+          this.error = false;
+          this.massage='done!'
+       
+        }
       },
       
+    },
+    mounted() { 
+      this.doFocus()
     },
     computed: {
 
