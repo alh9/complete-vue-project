@@ -6,7 +6,7 @@
       <input type="text" v-model="employee.name" ref="first"/>
       <label>Employee Email</label>
       <input type="text" v-model="employee.email"/>
-      <p v-text="qasem"></p>
+      <p v-text="massage"></p>
 
 
       <button>Add Employee</button>
@@ -19,7 +19,7 @@
     name: 'employee-form',
     data() {
       return {
-      qasem:'',
+      massage:'',
         submitting: false,
         error: false,
         success: false,
@@ -35,13 +35,13 @@
       
       if(this.invalidName||this.invalidEmail){
         this.error = true;
-        this.qasem='you have to fill the inputs';
+        this.massage='you have to fill the inputs';
       }
       else{
       this.$emit('add:employee' , this.employee)
       this.$refs.first.focus()
       this.error = false;
-        this.qasem='done!'
+        this.massage='done!'
       }
       },
       
@@ -52,7 +52,7 @@
       return this.employee.name === ''
       },
       invalidEmail() {
-      return this.employee.email === ''
+      return this.employee.email === ''|| !this.employee.email.includes('@')
       },
       haserror(){
       
