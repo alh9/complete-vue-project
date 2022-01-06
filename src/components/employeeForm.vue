@@ -1,15 +1,15 @@
 <template>
   <div id="employee-form">
     <!-- <form @submit.prevent="handleSubmit"></form> -->
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="doNothin" >
       <label>Employee name</label>
-      <input type="text" v-model="employee.name" ref="first"/>
+      <input type="text" v-model="employee.name" ref="first" @keydown.enter.stop="doFocus2" />
       <label>Employee Email</label>
-      <input type="text" v-model="employee.email"/>
+      <input type="text" v-model="employee.email" ref="second" @keydown.enter.stop='handleSubmit'/>
       <p v-text="massage"></p>
 
 
-      <button>Add Employee</button>
+      <button >Add Employee</button>
     </form>
   </div>
 </template>
@@ -30,24 +30,33 @@
       }
     },
     methods:{
-      doFocus(){
+      doNothin(event){
+        console.log(event)
+        return 0
+      },
+      doFocus1(){
         this.$refs.first.focus()
+      },
+      doFocus2(){
+        this.$refs.second.focus()
       },
       handleSubmit(){
         if(this.invalidName){
 
           this.error = true;
           this.massage='invalid name';
+          this.doFocus1()
         
         }
         else if(this.invalidEmail){
           this.error = true;
           this.massage = 'invalid email'
+          this.doFocus2()
         }
         else{
 
           this.$emit('add:employee' , this.employee)
-          this.doFocus()
+          this.doFocus1()
           this.error = false;
           this.massage='done!'
        
@@ -56,7 +65,7 @@
       
     },
     mounted() { 
-      this.doFocus()
+      this.doFocus1()
     },
     computed: {
 

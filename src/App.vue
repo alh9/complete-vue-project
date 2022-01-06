@@ -45,7 +45,7 @@
       addEmployee(employee) {
         const lastId =
         this.employees.length > 0
-        ? this.employees[this.employees.length - 1].id
+        ? this.employees[this.employees.length - 1].id//don't use index of 'for' for :key
         : 0;
         const id = lastId + 1;
         const newEmployee = { ...employee, id };
