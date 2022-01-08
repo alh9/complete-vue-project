@@ -6,8 +6,8 @@
     <table v-else>
       <thead >
         <tr>
-          <th>Employee name</th>
-          <th>Employee email</th>
+          <th :class="{darkModeText:moonIcon}">Employee name</th>
+          <th :class="{darkModeText:moonIcon}">Employee email</th>
         </tr>
       </thead>
       <tbody>
@@ -15,18 +15,18 @@
           <td v-if="editing === employee.id">
             <input type="text" v-model="employee.name" />
           </td>
-          <td v-else>{{ employee.name }}</td>
+          <td v-else :class="{darkModeText:moonIcon}">{{ employee.name }}</td>
           <td v-if="editing === employee.id">
             <input type="text" v-model="employee.email" />
           </td>
-          <td v-else>{{ employee.email }}</td>
+          <td v-else :class="{darkModeText:moonIcon}">{{ employee.email }}</td>
           <td v-if="editing === employee.id">
-            <button @click="editEmployee(employee)">Save</button>
-            <button class="muted-button" @click="cancelEdit(employee)">Cancel</button>
+            <button @click="editEmployee(employee)" :class="{darkModeButton : moonIcon}">Save</button>
+            <button class="muted-button" @click="cancelEdit(employee)" :class="{darkModeButton : moonIcon}">Cancel</button>
           </td>
           <td v-else>
-            <button @click="editMode(employee)">Edit</button>
-            <button @click="$emit('delete:employee', employee.id)">Delete</button>
+            <button @click="editMode(employee)" :class="{darkModeButton : moonIcon}">Edit</button>
+            <button @click="$emit('delete:employee', employee.id)" :class="{darkModeButton : moonIcon}">Delete</button>
           </td>
         </tr>  
       </tbody>
@@ -40,6 +40,7 @@
     name: 'employee-table',
     props:{
       employees:Array,
+      moonIcon:Boolean,
     },
     data() {
       return {
